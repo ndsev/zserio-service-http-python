@@ -1,6 +1,6 @@
-# ZserioServiceHttp library
+# Zserio Service HTTP backend
 
-Sample implementation of Zserio service HTTP backend in **Python**.
+Sample implementation of Zserio Service HTTP backend in **Python**.
 
 # Prerequisites
 
