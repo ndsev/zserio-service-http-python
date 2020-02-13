@@ -23,20 +23,32 @@ def _printHelp():
     )
 
 def _powerOfTwo(client, line):
-    request = api.I32.fromFields(int(line))
+    try:
+        request = api.I32.fromFields(int(line))
+    except Exception as e:
+        print("Error: '%s' cannot be converted to int32!" % line)
+        print(e)
+        return
+
     try:
         response = client.powerOfTwoMethod(request)
-    except zserio.ServiceException as e:
-        print(e)
+    except Exception as e:
+        print("Error:", e)
     else:
         print(response.getValue())
 
 def _squareRoot(client, line):
-    request = api.Double.fromFields(float(line))
+    try:
+        request = api.Double.fromFields(float(line))
+    except Exception as e:
+        print("Error: '%s' cannot be converted to double!" % line)
+        print(e)
+        return
+
     try:
         response = client.squareRootMethod(request)
-    except zserio.ServiceException as e:
-        print(e)
+    except Exception as e:
+        print("Error:", e)
     else:
         print(response.getValue())
 

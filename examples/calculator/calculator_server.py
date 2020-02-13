@@ -6,6 +6,10 @@ from zserio_service_http import HttpServer
 import calculator.api as api
 
 class CalculatorService(api.Calculator.Service):
+    """
+    Implementation of Zserio Calculator Service.
+    """
+
     def _powerOfTwoImpl(self, request, _context):
         response = api.U64.fromFields(request.getValue()**2)
         return response
@@ -19,5 +23,6 @@ if __name__ == "__main__":
     (host, port) = address.split(':') if ':' in address else (address, 5000)
 
     calculatorService = CalculatorService()
+    # HttpServer from zserio_service_http library uses the Zserio Calculator Service
     httpServer = HttpServer(calculatorService)
     httpServer.run(host, port)
