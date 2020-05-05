@@ -1,0 +1,3 @@
+flask
+zserio>=2.0.0-pre3
+
