@@ -1,35 +1,29 @@
-# Zserio Service HTTP backend
+## Zserio Service using RPC via HTTP
+Implementation of a zserio service using HTTP for remoting, written in **Python**.
+zserio doesn't enforce any specific technology for remoting/RPC but provides 
+a starting point to plugin different implementations easily. Have also a look at 
+the other available examples and/or consider using [zswag](https://github.com/Klebert-Engineering/zswag)
+to further ease application development.
 
-Sample implementation of Zserio Service HTTP backend in **Python**.
-
-# Prerequisites
-
-   1. Python 3 with flask installed
-
-      ```bash
-      python3 -m pip install flask
-      ```
-
-   2. Zserio Python runtime library
-   3. Zserio compiler (`zserio.jar`)
-
-> Zserio prerequisites are included in this repo in 3rdparty folder.
-
-# Usage
-
-## Calculator Example
-
+## Package Structure
 ```bash
-cd examples/calculator
-# generate service using Zserio
-java -jar ../../3rdparty/zserio.jar calculator.zs -python gen
++-- myservice: Contains server and client apps 
+   +-- zs: zserio schema and API generation logic 
+   +-- http_rpc: HTTP based remoting for zserio generated service APIs
+```
 
-export PYTHONDONTWRITEBYTECODE=1
-export PYTHONPATH=../../3rdparty/runtime:../../src:gen
-python3 calculator_server.py &
-python3 calculator_client.py
-# follow client's instructions
-# ...
-# pres q + ENTER to quit the client
-fg # and pres Ctrl+C to quit the server
+## Usage
+Use `pip3` to install all needed dependencies:
+```bash
+pip3 install -r requirements.txt
+```
+Use server and client modules to actually run the example:
+```bash
+# Starting the server (using localhost:5000)
+# Press Ctrl+C to quit it
+python3 -m myservice.server 
+
+# Starting the client
+# Just follow the displayed instructions
+python3 -m myservice.client
 ```
