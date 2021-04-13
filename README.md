@@ -4,16 +4,18 @@ Sample implementation of Zserio Service HTTP backend in **Python**.
 
 # Prerequisites
 
-   1. Python 3 with flask installed
+1. Java JRE 8+
+1. Python 3.8+
+1. Web framework flask:
 
-      ```bash
-      python3 -m pip install flask
-      ```
+   ```
+   python3 -m pip install flask
+   ```
+1. Zserio compiler with Python runtime library:
 
-   2. Zserio Python runtime library
-   3. Zserio compiler (`zserio.jar`)
-
-> Zserio prerequisites are included in this repo in 3rdparty folder.
+   ```
+   python3 -m pip install zserio
+   ```
 
 # Usage
 
@@ -22,14 +24,15 @@ Sample implementation of Zserio Service HTTP backend in **Python**.
 ```bash
 cd examples/calculator
 # generate service using Zserio
-java -jar ../../3rdparty/zserio.jar calculator.zs -python gen
+zserio calculator.zs -python ../../build/gen
 
 export PYTHONDONTWRITEBYTECODE=1
-export PYTHONPATH=../../3rdparty/runtime:../../src:gen
+export PYTHONPATH=../../src:../../build/gen
 python3 calculator_server.py &
 python3 calculator_client.py
 # follow client's instructions
 # ...
-# pres q + ENTER to quit the client
-fg # and pres Ctrl+C to quit the server
+# press q + ENTER to quit the client
+fg
+# press Ctrl+C to quit the server
 ```

@@ -1,35 +1,38 @@
+import typing
 import http.client
 from http import HTTPStatus
+
 import zserio
 
-class HttpClient(zserio.ServiceInterface):
+class HttpClient(zserio.ServiceClientInterface):
     """
     Implementation of HTTP client as Zserio generic service interface.
     """
 
-    def __init__(self, serviceFullName, host="localhost", port=5000):
+    def __init__(self, service_full_name: str, host: str = "localhost", port:int = 5000):
         """
         Constructor.
 
-        :param serviceFullName: Full name of the Zserio service (needed to construct a REST-like path).
+        :param service_full_name: Full name of the Zserio service (needed to construct a REST-like path).
         :param host: Host to connect.
         :param port: Port to connect.
         """
 
-        self.connection = http.client.HTTPConnection(host, port)
-        self.serviceFullPath = '/' + serviceFullName.replace('.', '/') + '/'
+        self._connection = http.client.HTTPConnection(host, port)
+        self._service_full_path = '/' + service_full_name.replace('.', '/') + '/'
 
-    def callMethod(self, methodName, requestData, _context):
+    def call_method(self, method_name: str, request: zserio.ServiceData, _context: typing.Any = None) -> bytes:
         """
-        Implementation of ServiceInterface.callMethod.
+        Implementation of ServiceClientInterface.call_method.
         """
 
         try:
-            self.connection.request("POST", self.serviceFullPath + methodName, requestData)
-            response = self.connection.getresponse()
+            self._connection.request("POST", self._service_full_path + method_name, request.byte_array)
+            response = self._connection.getresponse()
             if response.status != HTTPStatus.OK:
                 raise zserio.ServiceException(str(response.status))
-            responseData = response.read()
-            return responseData
-        except Exception as e:
-            raise zserio.ServiceException("HTTP call failed: " + str(e))
+            response_data = response.read()
+
+            return response_data
+        except Exception as expt:
+            raise zserio.ServiceException("HTTP call failed: " + str(expt))
