@@ -20,7 +20,7 @@ class HttpServer:
         self._app = Flask(service_impl.service_full_name)
 
         # pylint: disable=unused-variable
-        @self._app.route('/' + service_impl.service_full_name.replace('.', '/') + "/<methodName>",
+        @self._app.route('/' + service_impl.service_full_name.replace('.', '/') + "/<method_name>",
                          methods=['POST'])
         def call_method(method_name: str) -> bytes:
             request_data = request.get_data()
