@@ -1,4 +1,5 @@
 import sys
+import time
 from enum import Enum
 
 import calculator.api as api
@@ -77,7 +78,8 @@ def _main():
             continue
 
         if line[0] == 'q':
-            print("Quit.")
+            print("Quiting.")
+            time.sleep(1) # wait a little bit for a potential responses
             sys.exit(0)
 
         if line[0] == 'h':
