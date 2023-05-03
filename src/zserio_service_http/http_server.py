@@ -26,7 +26,7 @@ class HttpServer:
             request_data = request.get_data()
             response = self._service_impl.call_method(method_name, request_data)
 
-            return response.byte_array
+            return bytes(response.byte_array)
 
     def run(self, host:str = "localhost", port:int = 5000):
         """
