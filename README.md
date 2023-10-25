@@ -1,5 +1,13 @@
 # Zserio Service HTTP backend
 
+[![](https://github.com/ndsev/zserio-service-http-python/actions/workflows/build_linux.yml/badge.svg)](https://github.com/ndsev/zserio-service-http-python/actions/workflows/build_linux.yml)
+[![](https://github.com/ndsev/zserio-service-http-python/actions/workflows/build_windows.yml/badge.svg)](https://github.com/ndsev/zserio-service-http-python/actions/workflows/build_windows.yml)
+[![](https://img.shields.io/github/watchers/ndsev/zserio-service-http-python.svg)](https://GitHub.com/ndsev/zserio-service-http-python/watchers)
+[![](https://img.shields.io/github/forks/ndsev/zserio-service-http-python.svg)](https://GitHub.com/ndsev/zserio-service-http-python/network/members)
+[![](https://img.shields.io/github/stars/ndsev/zserio-service-http-python.svg?color=yellow)](https://GitHub.com/ndsev/zserio-service-http-python/stargazers)
+
+--------
+
 Sample implementation of Zserio Service HTTP backend in **Python**.
 
 # Prerequisites
