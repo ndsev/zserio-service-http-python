@@ -2,7 +2,7 @@ import sys
 import math
 import typing
 
-import calculator.api as api
+from calculator import api
 
 from zserio_service_http import HttpServer
 

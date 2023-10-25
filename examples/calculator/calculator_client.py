@@ -2,7 +2,7 @@ import sys
 import time
 from enum import Enum
 
-import calculator.api as api
+from calculator import api
 
 from zserio_service_http import HttpClient
 
@@ -27,7 +27,7 @@ def _power_of_two(client: api.Calculator.Client, line: str):
     try:
         request = api.I32(int(line))
     except Exception as expt:
-        print("Error: '%s' cannot be converted to int32!" % line)
+        print(f"Error: '%{line}' cannot be converted to int32!")
         print(expt)
 
         return
@@ -43,7 +43,7 @@ def _square_root(client: api.Calculator.Client, line: str):
     try:
         request = api.Double(float(line))
     except Exception as expt:
-        print("Error: '%s' cannot be converted to double!" % line)
+        print(f"Error: '{line}' cannot be converted to double!")
         print(expt)
 
         return
